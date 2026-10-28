@@ -1,853 +1,594 @@
 <!DOCTYPE html>
-<html lang="rw">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>shyakaSHOP · Ikoranabuhanga mu Rwanda</title>
-  <!-- Google Fonts for modern typography -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-  <!-- Font Awesome 6 (free icons) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>shyakaSHOP - Electronics Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* -------------------- RESET & GLOBAL -------------------- */
+    :root {
+      --primary: #0f382c;
+      --primary-light: #185241;
+      --accent: #25D366;
+      --accent-hover: #1da851;
+      --bg: #f8faf9;
+      --card-bg: #ffffff;
+      --text: #1f2937;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 4px 12px rgba(0,0,0,0.05);
+      --radius: 10px;
+    }
+
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f9fbf9;
-      color: #1e2b1e;
+      background-color: var(--bg);
+      color: var(--text);
       line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
     }
 
-    /* Color variables – Dark green palette */
-    :root {
-      --dark-green: #1b3b1b;
-      --primary-green: #1f4a1f;
-      --accent-green: #2e7d32;
-      --light-green-bg: #eaf4ea;
-      --card-bg: #ffffff;
-      --text-dark: #1e2b1e;
-      --text-soft: #3f5a3f;
-      --shadow-sm: 0 8px 20px rgba(0, 30, 0, 0.06);
-      --shadow-md: 0 15px 30px rgba(0, 40, 0, 0.1);
-      --border-radius-card: 24px;
-      --border-radius-btn: 50px;
-      --transition: all 0.25s ease;
-    }
-
-    /* Typography & spacing */
-    h1, h2, h3 {
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--dark-green);
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      padding: 0.85rem 2rem;
-      border-radius: var(--border-radius-btn);
-      font-weight: 600;
-      font-size: 1rem;
-      border: none;
-      cursor: pointer;
-      transition: var(--transition);
-      text-decoration: none;
-      background-color: var(--accent-green);
-      color: white;
-      box-shadow: 0 6px 14px rgba(46, 125, 50, 0.25);
-    }
-
-    .btn:hover {
-      background-color: #1e5e22;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(46, 125, 50, 0.35);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 2px solid var(--accent-green);
-      color: var(--accent-green);
-      box-shadow: none;
-    }
-
-    .btn-outline:hover {
-      background: var(--accent-green);
-      color: white;
-    }
-
-    /* -------------------- HEADER / NAVBAR -------------------- */
-    .navbar {
-      background-color: var(--dark-green);
-      color: white;
-      padding: 1rem 0;
+    /* NAVIGATION */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 4px 12px rgba(0, 20, 0, 0.3);
     }
 
     .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 15px 20px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-name {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-name span {
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
       align-items: center;
       flex-wrap: wrap;
     }
 
-    .logo {
-      font-size: 1.9rem;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      display: flex;
-      align-items: center;
-      gap: 0.2rem;
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
     }
 
-    .logo span:first-child {
-      color: #ffffff;
-    }
-
-    .logo span:last-child {
-      color: #b9e6b9;
+    nav a:hover, nav a.active {
+      color: var(--primary);
       font-weight: 600;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      list-style: none;
+    .nav-wa-btn {
+      background-color: var(--accent);
+      color: white !important;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600 !important;
     }
 
-    .nav-links a {
-      color: #f0f9f0;
-      text-decoration: none;
-      font-weight: 500;
-      transition: var(--transition);
-      font-size: 1rem;
+    .nav-wa-btn:hover {
+      background-color: var(--accent-hover);
     }
 
-    .nav-links a:hover {
-      color: #b9e6b9;
-      text-decoration: underline;
-      text-underline-offset: 6px;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .whatsapp-nav {
-      background-color: #25D366;
-      color: #0b2e0b;
-      padding: 0.55rem 1.4rem;
-      border-radius: 30px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
-      transition: var(--transition);
-      font-size: 0.95rem;
-    }
-
-    .whatsapp-nav i {
-      font-size: 1.2rem;
-    }
-
-    .whatsapp-nav:hover {
-      background-color: #1ebe5a;
-      transform: scale(1.02);
-    }
-
-    /* Mobile menu (simple) */
     .menu-toggle {
       display: none;
       background: none;
       border: none;
-      color: white;
-      font-size: 1.8rem;
+      font-size: 24px;
       cursor: pointer;
     }
 
-    /* -------------------- HERO SECTION -------------------- */
-    .hero {
-      background: linear-gradient(135deg, #e4f0e4 0%, #d0e6d0 100%);
-      padding: 3.5rem 0;
-      margin-bottom: 1rem;
+    /* MAIN CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
     }
 
-    .hero-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 2.5rem;
-    }
-
-    .hero-text {
-      flex: 1 1 300px;
-    }
-
-    .hero-text h1 {
-      font-size: 3rem;
-      line-height: 1.2;
-      margin-bottom: 1rem;
-      color: #0d2e0d;
-    }
-
-    .hero-text p {
-      font-size: 1.25rem;
-      color: #1f3b1f;
-      margin-bottom: 2rem;
-      max-width: 500px;
-      font-weight: 400;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background-color: #1b3b1b;
-      color: white;
-      font-size: 0.9rem;
-      font-weight: 600;
-      padding: 0.4rem 1.2rem;
-      border-radius: 40px;
-      margin-bottom: 1.2rem;
-      letter-spacing: 0.3px;
-    }
-
-    .hero-image {
-      flex: 1 1 300px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hero-image img {
-      max-width: 100%;
-      width: 380px;
-      height: auto;
-      border-radius: 32px;
-      box-shadow: var(--shadow-md);
-      object-fit: cover;
-      background: #ffffff;
-      padding: 0.5rem;
-    }
-
-    /* Fallback icon if image unavailable */
-    .hero-fallback {
-      width: 320px;
-      height: 280px;
-      background: #cfe2cf;
-      border-radius: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 6rem;
-      color: #1b3b1b;
-      box-shadow: var(--shadow-md);
-    }
-
-    /* -------------------- SECTION TITLES -------------------- */
     .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      margin: 3rem 0 1.8rem;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 20px;
+      text-align: center;
     }
 
-    .section-title h2 {
-      margin-bottom: 0;
-    }
-
-    .section-title a {
-      color: var(--accent-green);
-      font-weight: 600;
-      text-decoration: none;
-      border-bottom: 2px solid transparent;
-      transition: var(--transition);
-    }
-
-    .section-title a:hover {
-      border-bottom-color: var(--accent-green);
-    }
-
-    /* -------------------- PRODUCT GRID (CARD) -------------------- */
+    /* PRODUCT GRID */
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1.8rem;
-      margin-bottom: 3rem;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
     }
 
     .product-card {
       background: var(--card-bg);
-      border-radius: var(--border-radius-card);
-      box-shadow: var(--shadow-sm);
-      padding: 1.5rem 1.2rem 1.8rem;
-      transition: var(--transition);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 15px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      text-align: center;
-      border: 1px solid rgba(46, 125, 50, 0.1);
-      position: relative;
+      justify-content: space-between;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .product-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-md);
-      border-color: rgba(46, 125, 50, 0.3);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
     }
 
     .product-img {
       width: 100%;
-      height: 160px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-      background: #f4faf4;
-      border-radius: 18px;
-      padding: 0.8rem;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      background-color: #f3f4f6;
     }
 
-    .product-img img {
-      max-width: 100%;
-      max-height: 140px;
-      object-fit: contain;
-    }
-
-    .product-img i {
-      font-size: 4rem;
-      color: #2e7d32;
-      opacity: 0.8;
+    .product-category {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-hover);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
     }
 
     .product-title {
-      font-weight: 700;
-      font-size: 1.15rem;
-      margin-bottom: 0.4rem;
-      color: var(--dark-green);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
     }
 
-    .product-sub {
-      font-size: 0.85rem;
-      color: var(--text-soft);
-      margin-bottom: 0.8rem;
-      font-weight: 400;
+    .product-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      line-height: 1.4;
+      flex-grow: 1;
     }
 
     .product-price {
-      font-weight: 800;
-      font-size: 1.45rem;
-      color: #1b3b1b;
-      margin-bottom: 1rem;
-      letter-spacing: -0.3px;
-    }
-
-    .product-price small {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: #3a5e3a;
-    }
-
-    .whatsapp-btn {
-      background-color: #25D366;
-      color: #0b2e0b;
-      padding: 0.7rem 1.2rem;
-      border-radius: 40px;
+      font-size: 18px;
       font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .order-btn {
+      width: 100%;
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
-      text-decoration: none;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .order-btn:hover {
+      background-color: var(--accent-hover);
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      transition: var(--transition);
-      font-size: 0.95rem;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-card {
+      background: white;
+      border-radius: var(--radius);
+      max-width: 450px;
+      width: 100%;
+      padding: 24px;
+      position: relative;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .close-modal {
+      background: none;
       border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .modal-product-summary {
+      background: #f9fafb;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .qty-btn {
+      width: 30px;
+      height: 30px;
+      background: #e5e7eb;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
       cursor: pointer;
     }
 
-    .whatsapp-btn i {
-      font-size: 1.2rem;
+    .total-price-box {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 15px 0;
+      text-align: right;
     }
 
-    .whatsapp-btn:hover {
-      background-color: #1ebe5a;
-      box-shadow: 0 6px 14px rgba(37, 211, 102, 0.3);
-    }
-
-    /* -------------------- FEATURES BANNER -------------------- */
-    .features {
-      background-color: var(--dark-green);
+    .submit-wa-btn {
+      width: 100%;
+      background: var(--accent);
       color: white;
-      border-radius: 32px;
-      padding: 2.5rem 2rem;
-      margin: 2.5rem 0;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      gap: 2rem;
-      text-align: center;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
     }
 
-    .feature-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.7rem;
-      flex: 1 1 140px;
-    }
-
-    .feature-item i {
-      font-size: 2.2rem;
-      color: #b9e6b9;
-    }
-
-    .feature-item h3 {
-      color: white;
-      font-size: 1.15rem;
-      font-weight: 600;
-    }
-
-    .feature-item p {
-      font-size: 0.9rem;
-      opacity: 0.9;
-    }
-
-    /* -------------------- CATEGORIES (mini pills) -------------------- */
-    .category-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin: 2rem 0 1rem;
-    }
-
-    .category-pills a {
-      background: #e2efe2;
-      color: #1b3b1b;
-      padding: 0.7rem 1.6rem;
-      border-radius: 40px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: var(--transition);
-      font-size: 0.95rem;
-    }
-
-    .category-pills a:hover,
-    .category-pills a.active {
-      background: var(--accent-green);
-      color: white;
-      box-shadow: 0 8px 16px rgba(46, 125, 50, 0.25);
-    }
-
-    /* -------------------- FOOTER -------------------- */
+    /* FOOTER */
     footer {
-      background-color: #0e1f0e;
-      color: #c3dbc3;
-      padding: 2.8rem 0 1.8rem;
-      margin-top: 4rem;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .footer-col h4 {
+      background: var(--primary);
       color: white;
-      font-size: 1.2rem;
-      margin-bottom: 1.2rem;
-      font-weight: 600;
+      padding: 40px 20px;
+      margin-top: 50px;
     }
 
-    .footer-col ul {
-      list-style: none;
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
     }
 
-    .footer-col ul li {
-      margin-bottom: 0.7rem;
+    .footer-col h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: var(--accent);
     }
 
-    .footer-col a {
-      color: #c3dbc3;
+    .footer-col p, .footer-col a {
+      color: #d1d5db;
+      font-size: 14px;
       text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .footer-col a:hover {
-      color: #b9e6b9;
-      text-decoration: underline;
+      margin-bottom: 8px;
+      display: block;
     }
 
     .footer-bottom {
-      border-top: 1px solid #2a422a;
-      padding-top: 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.9rem;
+      max-width: 1200px;
+      margin: 30px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--primary-light);
+      text-align: center;
+      font-size: 13px;
+      color: #9ca3af;
     }
 
-    /* -------------------- RESPONSIVE -------------------- */
-    @media (max-width: 850px) {
-      .hero-text h1 {
-        font-size: 2.4rem;
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 15px;
       }
-      .nav-links {
-        display: none; /* simplify for demo, but we use toggle later */
+
+      nav.open {
+        display: flex;
       }
+
       .menu-toggle {
         display: block;
       }
+
       .nav-container {
-        position: relative;
+        flex-wrap: wrap;
       }
-      .nav-links.active {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        background-color: var(--dark-green);
-        padding: 1.5rem 0;
-        gap: 1.2rem;
-        margin-top: 1rem;
-        border-radius: 20px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .hero-text h1 {
-        font-size: 2rem;
-      }
-      .hero-text p {
-        font-size: 1rem;
-      }
-      .section-title h2 {
-        font-size: 1.6rem;
-      }
-      .product-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-      }
-      .product-price {
-        font-size: 1.2rem;
-      }
-      .whatsapp-nav span {
-        display: none; /* hide text on mobile, keep icon */
-      }
-      .whatsapp-nav {
-        padding: 0.6rem 1rem;
-      }
-      .features {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-      .product-img {
-        height: 120px;
-      }
-    }
-
-    @media (max-width: 420px) {
-      .product-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Utility */
-    .text-center {
-      text-align: center;
-    }
-
-    .mt-2 {
-      margin-top: 2rem;
-    }
-
-    .mb-1 {
-      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
-  <!-- HEADER / NAVBAR -->
-  <header class="navbar">
-    <div class="container nav-container">
-      <div class="logo">
-        <span>shyaka</span><span>SHOP</span>
-      </div>
 
-      <button class="menu-toggle" id="menuToggle" aria-label="Fungura menu">
-        <i class="fas fa-bars"></i>
-      </button>
-
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#">Home</a></li>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#categories">Categories</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+  <!-- HEADER -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand-name">shyaka<span>SHOP</span></a>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+      <nav id="navMenu">
+        <a href="#" class="active">Home</a>
+        <a href="#products">All Products</a>
+        <a href="#smartphones">Smartphones</a>
+        <a href="#laptops">Laptops</a>
+        <a href="#accessories">Accessories</a>
+        <a href="#audio">Audio</a>
+        <a href="#offers">Offers</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact Us</a>
+        <a href="https://wa.me/250798019816" target="_blank" class="nav-wa-btn">WhatsApp</a>
+      </nav>
     </div>
   </header>
 
-  <main>
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <div class="container hero-content">
-        <div class="hero-text">
-          <h1>Good Quality Electronics in Rwanda</h1>
-          <p>Phones, laptops, televisions and other electronic devices — all at competitive prices, delivered to your doorstep.</p>
-
-        </div>
-        
-      </div>
-    </section>
-
-    <!-- CATEGORIES (quick pills) -->
-    <div class="container" id="categories">
-      <div class="category-pills">
-        <a href="#" class="active">All</a>
-      </div>
+  <!-- MAIN CONTENT -->
+  <div class="container" id="products">
+    <h2 class="section-title">Our Products</h2>
+    <div class="product-grid" id="productContainer">
+      <!-- Products will be injected by JavaScript -->
     </div>
+  </div>
 
-    <!-- PRODUCT SECTION -->
-    <div class="container" id="products">
-      <div class="section-title">
-        <h2>New Items</h2>
+  <!-- ORDER MODAL -->
+  <div class="modal-overlay" id="orderModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Order via WhatsApp</h3>
+        <button class="close-modal" id="closeModal">✕</button>
       </div>
-
-      <div class="product-grid">
-        <!-- 1. Smartphone -->
-        <div class="product-card">
-          <div class="product-img">
-<img src="/images/1.jfif">
-          </div>
-          <div class="product-title">Samsung Galaxy A54</div>
-          <div class="product-sub">128GB · 5G · AMOLED</div>
-          <div class="product-price">430,000 <small>RWF</small></div>
-          <a href="https://wa.me/250798019816?text=Muraho%2C%20ndifuza%20Samsung%20Galaxy%20A54%20ku%20giciro%20cya%20430%2C000%20RWF" class="whatsapp-btn" target="_blank">
-            <i class="fab fa-whatsapp"></i> Contact us on WhatsApp
-          </a>
-        </div>
-
-        <!-- 2. Laptop -->
-        <div class="product-card">
-          <div class="product-img">
-<img src="/images/2.jfif">
-          </div>
-          <div class="product-title">HP Pavilion 15</div>
-          <div class="product-sub">Intel Core i5 · 8GB RAM · 512GB SSD</div>
-          <div class="product-price">780,000 <small>RWF</small></div>
-          <a href="https://wa.me/250798019816?text=Muraho%2C%20ndifuza%20HP%20Pavilion%2015%20ku%20giciro%20cya%20780%2C000%20RWF" class="whatsapp-btn" target="_blank">
-            <i class="fab fa-whatsapp"></i> Contact us on WhatsApp
-          </a>
-        </div>
-
-        <!-- 3. Smart TV -->
-        <div class="product-card">
-          <div class="product-img">
-<img src="/images/3.jfif">
-          </div>
-          <div class="product-title">LG 43" Smart TV</div>
-          <div class="product-sub">4K UHD · WebOS · HDR10</div>
-          <div class="product-price">490,000 <small>RWF</small></div>
-          <a href="https://wa.me/250798019816?text=Muraho%2C%20ndifuza%20LG%2043%22%20Smart%20TV%20ku%20giciro%20cya%20490%2C000%20RWF" class="whatsapp-btn" target="_blank">
-            <i class="fab fa-whatsapp"></i> Contact us on WhatsApp
-          </a>
-        </div>
-
-        <!-- 4. Headphones -->
-        <div class="product-card">
-          <div class="product-img">
-<img src="/images/4.jfif">
-          </div>
-          <div class="product-title">Sony WH-1000XM4</div>
-          <div class="product-sub">Noise Cancelling · 30h battery</div>
-          <div class="product-price">350,000 <small>RWF</small></div>
-          <a href="https://wa.me/250798019816?text=Muraho%2C%20ndifuza%20Sony%20WH-1000XM4%20ku%20giciro%20cya%20350%2C000%20RWF" class="whatsapp-btn" target="_blank">
-            <i class="fab fa-whatsapp"></i> Contact us on WhatsApp
-          </a>
-        </div>
-
-        <!-- 5. Tablet -->
-        <div class="product-card">
-          <div class="product-img">
-<img src="/images/5.jfif">
-          </div>
-          <div class="product-title">iPad Air (2024)</div>
-          <div class="product-sub">M2 chip · 10.9" Liquid Retina</div>
-          <div class="product-price">920,000 <small>RWF</small></div>
-          <a href="https://wa.me/250798019816?text=Muraho%2C%20ndifuza%20iPad%20Air%20(2024)%20ku%20giciro%20cya%20920%2C000%20RWF" class="whatsapp-btn" target="_blank">
-            <i class="fab fa-whatsapp"></i> Contact us on WhatsApp
-          </a>
-        </div>
-
-        <!-- 6. Smartwatch -->
-        <div class="product-card">
-          <div class="product-img">
-<img src="/images/6.jfif">
-          </div>
-          <div class="product-title">Apple Watch SE</div>
-          <div class="product-sub">GPS · 44mm · Fitness tracker</div>
-          <div class="product-price">310,000 <small>RWF</small></div>
-          <a href="https://wa.me/250798019816?text=Muraho%2C%20ndifuza%20Apple%20Watch%20SE%20ku%20giciro%20cya%20310%2C000%20RWF" class="whatsapp-btn" target="_blank">
-            <i class="fab fa-whatsapp"></i> Contact us on WhatsApp
-          </a>
-        </div>
+      <div class="modal-product-summary">
+        <strong id="modalProductName">Product Name</strong><br>
+        <span id="modalProductPrice" style="color: var(--primary); font-weight: 600;">0 RWF</span>
       </div>
+      <form id="orderForm">
+        <div class="form-group">
+          <label>Quantity</label>
+          <div class="quantity-control">
+            <button type="button" class="qty-btn" id="decQty">-</button>
+            <input type="number" id="orderQty" value="1" min="1" readonly style="width: 60px; text-align: center;">
+            <button type="button" class="qty-btn" id="incQty">+</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="custName" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label>Phone Number *</label>
+          <input type="tel" id="custPhone" placeholder="078..." required>
+        </div>
+        <div class="form-group">
+          <label>Delivery Address / Location *</label>
+          <input type="text" id="custAddress" placeholder="Kigali, Nyarugenge..." required>
+        </div>
+        <div class="form-group">
+          <label>Additional Notes (Optional)</label>
+          <textarea id="custNotes" rows="2" placeholder="Color, specifications, or details..."></textarea>
+        </div>
+        <div class="total-price-box">
+          Total: <span id="modalTotalPrice">0 RWF</span>
+        </div>
+        <button type="submit" class="submit-wa-btn">Confirm Order on WhatsApp</button>
+      </form>
     </div>
-
-    <!-- FEATURES / WHY US -->
-    <div class="container">
-      <div class="features">
-        <div class="feature-item">
-       
-          <h3>Delivery in Rwanda</h3>
-          <p>In 2 Days</p>
-        </div>
-        <div class="feature-item">
-          <i class="fas fa-shield-halved"></i>
-          <h3>Guarantee</h3>
-          <p>1 Year</p>
-        </div>
-        <div class="feature-item">
-          <h3>Payment options</h3>
-          <p>MoMo, Airtel Money</p>
-        </div>
-        <div class="feature-item">
-        
-          <h3>Help 24/7</h3>
-          <p>Call us for support</p>
-        </div>
-      </div>
-    </div>
-
-    
-  </main>
+  </div>
 
   <!-- FOOTER -->
   <footer id="contact">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <div class="logo" style="font-size: 1.6rem; margin-bottom: 1rem;">
-            <span>shyaka</span><span>SHOP</span>
-          </div>
-          <p style="font-size: 0.95rem;">Good quality electronics in Rwanda.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Categories</h4>
-          <ul>
-            <li><a href="#">Telephone</a></li>
-            <li><a href="#">Laptop</a></li>
-            <li><a href="#">Television</a></li>
-            <li><a href="#">Accessories</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Information</h4>
-          <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms & Conditions</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <ul>
-            <li><i class="fas fa-phone-alt" style="width: 1.5rem;"></i> +250 798 019 816</li>
-            <li><i class="fas fa-envelope" style="width: 1.5rem;"></i> leoshyaka3@gmail.com</li>
-            <li><i class="fas fa-map-marker-alt" style="width: 1.5rem;"></i> Kigali, Rwanda</li>
-          </ul>
-        </div>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>shyakaSHOP</h3>
+        <p>Your premier destination for quality electronics and accessories in Rwanda.</p>
       </div>
-      <div class="footer-bottom">
-        <span>&copy; 2025 shyakaSHOP. All rights reserved.</span>
-        <span><i class="fas fa-heart" style="color: #b9e6b9;"></i> Made with love in Rwanda</span>
+      <div class="footer-col">
+        <h3>Address & Contact</h3>
+        <p>Location: Kigali, Rwanda</p>
+        <p>Phone: 0798019816</p>
+        <p>Email: <a href="mailto:shyakaleo3@gmail.com">shyakaleo3@gmail.com</a></p>
       </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="#products">All Products</a>
+        <a href="#services">Our Services</a>
+        <a href="https://wa.me/250798019816">WhatsApp Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 shyakaSHOP. All rights reserved.
     </div>
   </footer>
 
-  <!-- SIMPLE JAVASCRIPT (mobile menu toggle, cart placeholder) -->
   <script>
-    (function() {
-      const menuToggle = document.getElementById('menuToggle');
-      const navLinks = document.getElementById('navLinks');
+    // 20 PRODUCTS DATABASE
+    const products = [
+      { id: 1, name: "iPhone 15 Pro Max", category: "Smartphones", price: 1450000, desc: "256GB storage, Natural Titanium finish, high-performance camera system.", img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=400&q=80" },
+      { id: 2, name: "Samsung Galaxy S24 Ultra", category: "Smartphones", price: 1380000, desc: "512GB, AI features, built-in S-Pen stylus, professional display.", img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=400&q=80" },
+      { id: 3, name: "MacBook Pro M3", category: "Laptops", price: 2100000, desc: "Apple M3 Chip, 16GB RAM, 512GB SSD, Space Gray finish.", img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=400&q=80" },
+      { id: 4, name: "Dell XPS 15", category: "Laptops", price: 1650000, desc: "Intel Core i7, 16GB RAM, RTX Graphics, InfinityEdge display.", img: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=400&q=80" },
+      { id: 5, name: "AirPods Pro 2", category: "Audio", price: 280000, desc: "Active Noise Cancellation, USB-C Charging Case, Spatial Audio.", img: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=400&q=80" },
+      { id: 6, name: "JBL Charge 5 Speaker", category: "Audio", price: 180000, desc: "Waterproof Bluetooth speaker with built-in powerbank.", img: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=400&q=80" },
+      { id: 7, name: "Apple Watch Series 9", category: "Accessories", price: 480000, desc: "GPS, Midnight Aluminum Case, Fitness & Health Tracking.", img: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=400&q=80" },
+      { id: 8, name: "Anker Power Bank 20,000mAh", category: "Accessories", price: 45000, desc: "High-speed charging USB-C power bank for devices.", img: "https://images.unsplash.com/photo-1609592424109-dd9892f1b177?auto=format&fit=crop&w=400&q=80" },
+      { id: 9, name: "Google Pixel 8", category: "Smartphones", price: 820000, desc: "128GB, advanced Google AI camera, smooth performance.", img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=400&q=80" },
+      { id: 10, name: "HP Pavilion Desktop PC", category: "Laptops", price: 750000, desc: "Intel i5, 8GB RAM, 1TB HDD + 256GB SSD storage.", img: "https://images.unsplash.com/photo-1587831990711-23ca6441447b?auto=format&fit=crop&w=400&q=80" },
+      { id: 11, name: "iPad Air 5th Gen", category: "Accessories", price: 720000, desc: "M1 Chip, 64GB, Wi-Fi, 10.9-inch Liquid Retina Display.", img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=400&q=80" },
+      { id: 12, name: "Logitech MX Master 3S Mouse", category: "Accessories", price: 110000, desc: "Wireless Performance Mouse with quiet clicks and ultra-fast scroll.", img: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=400&q=80" },
+      { id: 13, name: "Mechanical Gaming Keyboard", category: "Accessories", price: 65000, desc: "RGB Backlit, Mechanical switches, durable aluminum build.", img: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=400&q=80" },
+      { id: 14, name: "Fast USB-C Charger 65W", category: "Accessories", price: 25000, desc: "GaN Fast charger suitable for laptops and smartphones.", img: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=400&q=80" },
+      { id: 15, name: "Samsung 27-inch Curved Monitor", category: "Accessories", price: 260000, desc: "Full HD 1080p, 75Hz refresh rate, Eye Saver mode.", img: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=400&q=80" },
+      { id: 16, name: "TP-Link Dual-Band WiFi Router", category: "Accessories", price: 55000, desc: "High-speed AC1200 wireless router with high coverage.", img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=400&q=80" },
+      { id: 17, name: "Sony WH-1000XM5 Headphones", category: "Audio", price: 420000, desc: "Industry-leading noise canceling wireless headphones.", img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=80" },
+      { id: 18, name: "Wireless Earbuds Baseus", category: "Audio", price: 30000, desc: "Long battery life, clear sound quality, bluetooth 5.3.", img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=400&q=80" },
+      { id: 19, name: "Sandisk 128GB Flash Drive", category: "Accessories", price: 18000, desc: "USB 3.0 high-speed data transfer flash drive.", img: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=400&q=80" },
+      { id: 20, name: "Protective iPhone Case", category: "Accessories", price: 10000, desc: "Shockproof clear magnetic phone case.", img: "https://images.unsplash.com/photo-1601593378480-f03a36a5a6e1?auto=format&fit=crop&w=400&q=80" }
+    ];
 
-      if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', function() {
-          navLinks.classList.toggle('active');
-          // change icon (optional)
-          const icon = menuToggle.querySelector('i');
-          if (navLinks.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-          } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-          }
-        });
+    const waPhone = "250798019816";
+    let selectedProduct = null;
+
+    // RWF FORMATTER
+    function formatRWF(amount) {
+      return new Intl.NumberFormat('en-RW', { style: 'decimal' }).format(amount) + ' RWF';
+    }
+
+    // RENDER PRODUCTS
+    function renderProducts() {
+      const container = document.getElementById('productContainer');
+      container.innerHTML = products.map(p => `
+        <div class="product-card">
+          <img src="${p.img}" alt="${p.name}" class="product-img">
+          <div class="product-category">${p.category}</div>
+          <div class="product-title">${p.name}</div>
+          <div class="product-desc">${p.desc}</div>
+          <div class="product-price">${formatRWF(p.price)}</div>
+          <button class="order-btn" onclick="openOrderModal(${p.id})">
+            <span>Order via WhatsApp</span>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    // MODAL LOGIC
+    function openOrderModal(id) {
+      selectedProduct = products.find(p => p.id === id);
+      if(!selectedProduct) return;
+
+      document.getElementById('modalProductName').innerText = selectedProduct.name;
+      document.getElementById('modalProductPrice').innerText = formatRWF(selectedProduct.price);
+      document.getElementById('orderQty').value = 1;
+      updateTotal();
+
+      document.getElementById('orderModal').style.display = 'flex';
+    }
+
+    function updateTotal() {
+      if(!selectedProduct) return;
+      const qty = parseInt(document.getElementById('orderQty').value) || 1;
+      const total = selectedProduct.price * qty;
+      document.getElementById('modalTotalPrice').innerText = formatRWF(total);
+    }
+
+    // EVENT LISTENERS
+    document.getElementById('incQty').addEventListener('click', () => {
+      const qtyInput = document.getElementById('orderQty');
+      qtyInput.value = parseInt(qtyInput.value) + 1;
+      updateTotal();
+    });
+
+    document.getElementById('decQty').addEventListener('click', () => {
+      const qtyInput = document.getElementById('orderQty');
+      if(parseInt(qtyInput.value) > 1) {
+        qtyInput.value = parseInt(qtyInput.value) - 1;
+        updateTotal();
       }
+    });
 
-      // Close mobile menu when a link is clicked (nice UX)
-      document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-          if (navLinks.classList.contains('active')) {
-            navLinks.classList.remove('active');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-          }
-        });
-      });
+    document.getElementById('closeModal').addEventListener('click', () => {
+      document.getElementById('orderModal').style.display = 'none';
+    });
 
-      // Smooth scroll for anchor links (optional)
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          const href = this.getAttribute('href');
-          if (href === "#" || href === "") return;
-          const target = document.querySelector(href);
-          if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        });
-      });
+    document.getElementById('orderForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const qty = document.getElementById('orderQty').value;
+      const name = document.getElementById('custName').value;
+      const phone = document.getElementById('custPhone').value;
+      const address = document.getElementById('custAddress').value;
+      const notes = document.getElementById('custNotes').value;
+      const total = selectedProduct.price * qty;
 
-      // Fake "cart" click handler for demo – you can extend.
-      console.log('shyakaSHOP — demo store ready. Book via WhatsApp.');
-    })();
+      const message = `Hello shyakaSHOP!\nI would like to order the following product:\n\nProduct: ${selectedProduct.name}\nUnit Price: ${formatRWF(selectedProduct.price)}\nQuantity: ${qty}\nTotal Price: ${formatRWF(total)}\n\nCustomer Details:\nName: ${name}\nPhone: ${phone}\nAddress/Location: ${address}\nNotes: ${notes || 'None'}\n\nThank you.`;
+
+      const encodedMessage = encodeURIComponent(message);
+      const waUrl = `https://wa.me/${waPhone}?text=${encodedMessage}`;
+
+      window.open(waUrl, '_blank');
+      document.getElementById('orderModal').style.display = 'none';
+    });
+
+    // MOBILE MENU TOGGLE
+    document.getElementById('menuToggle').addEventListener('click', () => {
+      document.getElementById('navMenu').classList.toggle('open');
+    });
+
+    // INITIALIZE
+    renderProducts();
   </script>
-
-  <!-- Note: all product order buttons use WhatsApp link with prefilled message -->
 </body>
 </html>
